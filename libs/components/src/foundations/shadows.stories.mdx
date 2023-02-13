@@ -1,0 +1,78 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import { Square } from '@chakra-ui/react';
+
+<Meta
+  title="Foundations/Shadows"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+export const Template = ({ shadow }) => (
+  <Square size="40" borderRadius="lg" shadow={shadow}>
+    {shadow}
+  </Square>
+);
+
+# Shadows
+
+Shadows allow you to add depth and realism to designs by positioning elements on a z-axis.
+
+## xs
+
+<Canvas>
+  <Story name="xs" args={{ shadow: 'xs' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## sm
+
+<Canvas>
+  <Story name="sm" args={{ shadow: 'sm' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## md
+
+<Canvas>
+  <Story name="md" args={{ shadow: 'md' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## lg
+
+<Canvas>
+  <Story name="lg" args={{ shadow: 'lg' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## xl
+
+<Canvas>
+  <Story name="xl" args={{ shadow: 'xl' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 2xl
+
+<Canvas>
+  <Story name="2xl" args={{ shadow: '2xl' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 3xl
+
+<Canvas>
+  <Story name="3xl" args={{ shadow: '3xl' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

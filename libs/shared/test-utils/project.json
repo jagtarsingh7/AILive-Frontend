@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "shared-test-utils",
+  "sourceRoot": "libs/shared/test-utils/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "tsCheck": {
+      "executor": "./tools/executors/tsCheck:tsCheck"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/test-utils/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/test-utils"],
+      "options": {
+        "jestConfig": "libs/shared/test-utils/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

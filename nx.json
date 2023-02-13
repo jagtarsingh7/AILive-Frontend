@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "canvass-front-end-model-store",
+  "defaultProject": "main-app",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -9,7 +10,9 @@
           "build",
           "lint",
           "test",
-          "e2e"
+          "e2e",
+          "build-storybook",
+          "tsCheck"
         ],
         "accessToken": "MDE2MjlhZWYtM2QwNC00ZTg0LTlmZjUtZmI5OGY4ZjQ3Y2ZifHJlYWQtd3JpdGU="
       }
@@ -17,27 +20,55 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+    },
+    "build-storybook": {
+      "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
     }
   },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
-      "default"
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
     ],
     "sharedGlobals": []
   },
   "workspaceLayout": {
     "appsDir": "packages",
     "libsDir": "packages"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "none",
+        "linter": "eslint",
+        "bundler": "webpack",
+        "babel": true,
+        "compiler": "swc",
+        "pascalCaseFiles": true
+      },
+      "library": {
+        "style": "none",
+        "linter": "eslint",
+        "compiler": "swc",
+        "pascalCaseFiles": true
+      },
+      "component": {
+        "style": "none",
+        "pascalCaseDirectory": true,
+        "pascalCaseFiles": true,
+        "export": true
+      }
+    }
   }
 }

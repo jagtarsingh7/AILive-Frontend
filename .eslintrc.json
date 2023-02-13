@@ -1,0 +1,47 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "extends": ["prettier"],
+  "plugins": ["@nrwl/nx", "react-hooks", "prettier"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {
+        "no-use-before-define": "off",
+        "no-console": "error",
+        "import/extensions": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error"]
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {
+        "no-use-before-define": "off",
+        "no-console": "error",
+        "import/extensions": "off",
+        "no-unused-vars": "error"
+      }
+    }
+  ]
+}

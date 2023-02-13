@@ -1,0 +1,62 @@
+{
+  "name": "components",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/components/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "tsCheck": {
+      "executor": "./tools/executors/tsCheck:tsCheck"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/components"],
+      "options": {
+        "jestConfig": "libs/components/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "test": {
+        "executor": "@nrwl/jest:jest",
+        "outputs": ["coverage/libs/components"],
+        "options": {
+          "jestConfig": "libs/components/jest.config.ts",
+          "passWithNoTests": true
+        }
+      },
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/components/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/react",
+        "port": 4400,
+        "configDir": "libs/components/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "uiFramework": "@storybook/react",
+        "outputDir": "dist/storybook/components",
+        "configDir": "libs/components/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  }
+}

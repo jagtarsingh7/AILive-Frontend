@@ -1,0 +1,118 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+} from '@chakra-ui/react';
+import { Text } from '@canvass/components';
+
+<Meta
+  title="Foundations/Typography"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+export const weights = [400, 500, 600, 700];
+export const sizes = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs'];
+
+export const Template = () => (
+  <TableContainer>
+    <Table variant="simple">
+      <Thead bg="pink.50" shadow="sm">
+        <Tr>
+          <Th>Regular (400)</Th>
+          <Th>Medium (500)</Th>
+          <Th>Semibold (600)</Th>
+          <Th>Bold (700)</Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        {sizes.map((size) => (
+          <Tr>
+            {weights.map((weight) => (
+              <Td>
+                <Text fontSize={size} fontWeight={weight}>
+                  Display {size}
+                </Text>
+              </Td>
+            ))}
+          </Tr>
+        ))}
+      </Tbody>
+    </Table>
+  </TableContainer>
+);
+
+# Typography
+
+We're using `Inter, sans-serif` as our font family. <br />
+The currently available `fontWeight` are `400`, `500`, `600`, `700`. <br />
+And `fontSize` are `2xl`, `xl`, `lg`, `md`, `sm`, `xs`.
+
+<Canvas>
+  <Story
+    name="typography"
+    args={{}}
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/rZ85ug2cOmQQOqg8G6Uzmx/Canvass-Library-(v0.1)?node-id=18%3A1951',
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Usage
+
+In order to use the font `Inter`, we need to import the css files containing the fonts
+to the app we want it to be rendered.
+Example: `main.tsx` on our main app (`main-app`)
+
+> The fonts are being installed using `@fontsource/inter` [Fontsource](https://github.com/fontsource/fontsource)
+
+```js
+import '@canvass/foundations/fonts';
+```
+
+To use the typography on our project, we can use the
+[Text](?path=/docs/text--primary) component,
+[Heading](?path=/docs/heading--primary) component
+and any text on the page will be shown with this font family.
+
+## Overriding Chakra Font
+
+`foundations/fonts/index.ts`
+
+```js
+const fonts = {
+  heading: `'Inter', sans-serif`,
+  body: `'Inter', sans-serif`,
+};
+```
+
+`theme/index.ts`
+
+```js
+import { extendTheme } from '@chakra-ui/react';
+import { fonts } from '@canvass/foundations';
+
+const theme = extendTheme({ fonts });
+```
+
+### Reference
+
+Refer to the Chakra UI docs for more information on:
+
+- [Using fonts](https://chakra-ui.com/community/recipes/using-fonts)
+- [Managing typography options](https://chakra-ui.com/docs/styled-system/theme#typography)
+- [Text component props](https://chakra-ui.com/docs/styled-system/style-props#typography)

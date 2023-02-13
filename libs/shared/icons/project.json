@@ -1,0 +1,19 @@
+{
+  "name": "shared-icons",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/icons/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "tsCheck": {
+      "executor": "./tools/executors/tsCheck:tsCheck"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/icons/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

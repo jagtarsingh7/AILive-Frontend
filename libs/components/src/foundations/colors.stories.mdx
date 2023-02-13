@@ -1,0 +1,33 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs';
+
+import { colors } from '@canvass/foundations';
+
+<Meta
+  title="Foundations/Colors"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Colors
+
+Our design system leverages a purposeful set of color styles as the perfect starting point for any brand or project.
+When it comes to color, contrast is critical for ensuring text is legible.
+We've added WCAG 2.1 contrast ratios to our color system so you can make sure you're designing with accessibility in mind.
+
+<ColorPalette>
+  <ColorItem title="White" colors={[colors.white]} />
+  <ColorItem title="Black" colors={[colors.black]} />
+  <ColorItem title="Gray" colors={colors.gray} />
+  <ColorItem title="Primary" colors={colors.primary} />
+  <ColorItem title="Error" colors={colors.error} />
+  <ColorItem title="Warning" colors={colors.warning} />
+  <ColorItem title="Success" colors={colors.success} />
+</ColorPalette>
+
+## Chakra UI
+
+These colors can be referenced by the `color`, `borderColor`, `backgroundColor`, `fill`, `stroke`, `styles`.

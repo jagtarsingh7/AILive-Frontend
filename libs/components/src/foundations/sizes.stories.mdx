@@ -1,0 +1,150 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+import { Container, Box } from '@chakra-ui/react';
+
+<Meta
+  title="Foundations/Sizes"
+  parameters={{
+    viewMode: 'docs',
+  }}
+/>
+
+export const Template = ({ size }) => (
+  <Box width={size} bg="pink.100" p="2">
+    {size}
+  </Box>
+);
+
+export const ContainerTemplate = ({ size }) => (
+  <Container maxW={size} bg="pink.100" p="2" centerContent>
+    {size}
+  </Container>
+);
+
+# Sizes
+
+## Chakra UI
+
+The `sizes` key allows you to customize the global sizing of components you build for your project.
+By default these sizes value can be referenced by the `width`, `height`, and `maxWidth`, `minWidth`, `maxHeight`, `minHeight` styles.
+
+## Sizes
+
+<Canvas>
+  <Story
+    name="Size"
+    args={{ size: 'sm' }}
+    argTypes={{
+      size: {
+        options: [
+          'max',
+          'min',
+          'full',
+          '3xs',
+          '2xs',
+          'xs',
+          'sm',
+          'md',
+          'lg',
+          'xl',
+          '2xl',
+          '3xl',
+          '4xl',
+          '5xl',
+          '6xl',
+          '7xl',
+          '8xl',
+        ],
+        control: { type: 'select' },
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Size" />
+
+### Default Sizes
+
+```ts
+import { extendTheme } from '@chakra-ui/react'
+
+const sizes = {
+  sizes: {
+    ...theme.space,
+    max: 'max-content',
+    min: 'min-content',
+    full: '100%',
+    '3xs': '14rem',
+    '2xs': '16rem',
+    xs: '20rem',
+    sm: '24rem',
+    md: '28rem',
+    lg: '32rem',
+    xl: '36rem',
+    '2xl': '42rem',
+    '3xl': '48rem',
+    '4xl': '56rem',
+    '5xl': '64rem',
+    '6xl': '72rem',
+    '7xl': '80rem',
+    '8xl': '90rem',
+    container: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+    },
+  },
+}
+
+const theme = extendTheme({ sizes, ...})
+
+```
+
+### Usage
+
+A component like this: `<Box w={4} h={3} />` will generate an empty div with width set to `1rem` or `16px` and height set to `0.75rem` or `12px`.
+
+### Reference
+
+Refer to the [Chakra UI docs](https://chakra-ui.com/docs/styled-system/theme#sizes) for a list of size tokens and usage with style props.
+
+## Containers
+
+Working from a pre-defined and limited container spacing system allows you to work faster and consistently.
+
+By default, the `Container` component sets the `maxWidth` of the content to 60 characters (`60ch`)
+but you can customize this by passing custom `maxWidth` values or changing the size tokens defined in `theme.sizes.container`.
+
+<Canvas>
+  <Story
+    name="Container"
+    args={{ size: 'container.sm' }}
+    argTypes={{
+      size: {
+        options: [
+          'container.sm',
+          'container.md',
+          'container.lg',
+          'container.xl',
+        ],
+        control: { type: 'select' },
+      },
+    }}
+  >
+    {ContainerTemplate.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Container" />
+
+### Usage
+
+```tsx
+<Container maxW="container.sm">"container.sm" Container</Container>
+```
+
+### Reference
+
+Refer to the [Chakra UI docs](https://chakra-ui.com/docs/components/container) for details on the `Container` component.

@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@canvass/components": ["libs/components/src/index.ts"],
+      "@canvass/foundations": ["libs/foundations/src/index.ts"],
+      "@canvass/foundations/fonts": ["libs/foundations/src/fonts/fonts.ts"],
+      "@canvass/shared/icons": ["libs/shared/icons/src/index.ts"],
+      "@canvass/shared/utils": ["libs/shared/utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

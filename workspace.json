@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "components": "libs/components",
+    "foundations": "libs/foundations",
+    "main-app": "packages/main-app",
+    "shared-api": "libs/shared/api",
+    "shared-icons": "libs/shared/icons",
+    "shared-test-utils": "libs/shared/test-utils",
+    "shared-utils": "libs/shared/utils"
+  }
+}

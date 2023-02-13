@@ -1,0 +1,19 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundations/src",
+  "projectType": "library",
+  "targets": {
+    "tsCheck": {
+      "executor": "./tools/executors/tsCheck:tsCheck"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/foundations/**/*.ts"]
+      }
+    }
+  },
+  "tags": [],
+  "name": "foundations"
+}

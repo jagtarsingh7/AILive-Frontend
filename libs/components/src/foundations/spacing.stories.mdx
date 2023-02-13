@@ -1,0 +1,140 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import {
+  Box,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+} from '@chakra-ui/react';
+
+<Meta
+  title="Foundations/Spacing"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+export const Row = ({ name, space }) => (
+  <Tr key={name}>
+    <Td>{name}</Td>
+    <Td>{space}</Td>
+    <Td>{`${name * 4}px`}</Td>
+    <Td>
+      <Box bg="pink.100" h="4" w={name} />
+    </Td>
+  </Tr>
+);
+
+export const Template = ({ spaces }) => (
+  <TableContainer>
+    <Table variant="simple">
+      <Thead bg="gray.50" shadow="sm">
+        <Tr size="lg">
+          <Th>Name</Th>
+          <Th>Space</Th>
+          <Th>Pixels</Th>
+          <Th></Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        <Tr key="px">
+          <Td>px</Td>
+          <Td>1px</Td>
+          <Td>1px</Td>
+          <Td>
+            <Box bg="pink.100" h="4" w="px" />
+          </Td>
+        </Tr>
+        {Object.entries(spaces)
+          .sort(([a], [b]) => parseInt(a, 10) - parseInt(b, 10))
+          .map(([name, space]) => (
+            <Row name={name} space={space} key={name} />
+          ))}
+      </Tbody>
+    </Table>
+  </TableContainer>
+);
+
+<!-- default chakra spacings -->
+
+export const space = {
+  0.5: '0.125rem',
+  1: '0.25rem',
+  1.5: '0.375rem',
+  2: '0.5rem',
+  2.5: '0.625rem',
+  3: '0.75rem',
+  3.5: '0.875rem',
+  4: '1rem',
+  5: '1.25rem',
+  6: '1.5rem',
+  7: '1.75rem',
+  8: '2rem',
+  9: '2.25rem',
+  10: '2.5rem',
+  12: '3rem',
+  14: '3.5rem',
+  16: '4rem',
+  20: '5rem',
+  24: '6rem',
+  28: '7rem',
+  32: '8rem',
+  36: '9rem',
+  40: '10rem',
+  44: '11rem',
+  48: '12rem',
+  52: '13rem',
+  56: '14rem',
+  60: '15rem',
+  64: '16rem',
+  72: '18rem',
+  80: '20rem',
+  96: '24rem',
+};
+
+# Spacing
+
+Just like your color scale, working from a defined spacing system allows you to work faster and more consistently.
+Consistent and scalable spacing helps you eliminate guesswork whilst designing and developing because you're designing with a limited set of options.
+
+## Chakra UI
+
+The space key allows you to customize the global spacing and sizing scale for your project.
+By default these spacing value can be referenced by the `padding`, `margin`, and `top`, `left`, `right`, `bottom` styles.
+
+### Overriding Chakra Spacing
+
+```js
+import { extendTheme } from '@chakra-ui/react';
+
+const spacing = {
+  space: customSpacing,
+};
+
+const theme = extendTheme({ ...spacing });
+```
+
+### Default Spacing
+
+<Canvas>
+  <Story name="spacing" args={{ spaces: space }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+By default, Chakra includes a comprehensive numeric spacing scale inspired by Tailwind CSS.
+The values are proportional, so 1 spacing unit is equal to `0.25rem`, which translates to `4px` by default in common browsers.
+
+> Mental model: If you need a spacing of 40px, divide it by 4. That'll give you 10. Then use it in your component.
+
+### Reference
+
+Refer to the [Chakra UI docs](https://chakra-ui.com/docs/styled-system/theme#spacing) for a list of spacing tokens and usage with style props.
