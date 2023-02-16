@@ -25,8 +25,6 @@ import {
   useRadioGroup,
   Image,
   Box,
-  DatePicker,
-  DateRangePicker,
 } from '@canvass/components';
 import { CircleIcon, FilledCircleIcon } from '@canvass/shared/icons';
 
@@ -39,8 +37,6 @@ import {
   QuestionOutlineIcon,
   EmailIcon,
 } from '@chakra-ui/icons';
-
-import { today, now, getLocalTimeZone } from '@internationalized/date';
 
 export function Testing() {
   const [clicked, setClicked] = useState(false);
@@ -57,31 +53,6 @@ export function Testing() {
 
   return (
     <Box p={6}>
-      <DatePicker
-        label="Date Picker"
-        granularity="minute"
-        minValue={today(getLocalTimeZone())}
-        defaultValue={now(getLocalTimeZone())}
-        placeholder="Date Input"
-        errorMessage="This is an error for the datepicker of the component"
-      />
-      <br />
-      <br />
-      <DateRangePicker
-        startLabel="Start Time"
-        endLabel="End Time"
-        granularity="minute"
-        minValue={today(getLocalTimeZone())}
-        defaultValue={{
-          start: now(getLocalTimeZone()),
-          end: now(getLocalTimeZone()).add({ days: 3 }),
-        }}
-        startErrorMessage="This is a range picker start error to be on only one start time side"
-        endErrorMessage="This is a range picker end error to be on only one end time side"
-      />
-      <br />
-      <br />
-      <br />
       <DropdownMenu closeOnSelect={true}>
         <DropdownMenu.Button
           as={Button}

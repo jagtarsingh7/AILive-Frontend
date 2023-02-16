@@ -15,3 +15,26 @@ Run `npx nx connect-to-nx-cloud` to enable [remote caching](https://nx.app) and 
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
+
+## Notes
+
+Currently using on the main app:
+
+- [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query)
+  - [Zod](https://zod.dev/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Nx Console](https://nx.dev/core-features/integrate-with-editors)
+- [React Router v6](https://reactrouter.com/en/main)
+- [Tastack Table](https://tanstack.com/table/v8)
+- [Echarts](https://echarts.apache.org/)
+
+> The current datepicker is not fully working, we're not using in our current app but we'll in the future
+> I'd suggest not trying to go on that route of fixing it but to use the native date picker if needed
+>
+> ```ts
+> import { Input } from '@canvass/components';
+>
+> <Input type="date" /> // native date picker
+> <Input type="datetime-local" /> // native date picker with time
+> ```
