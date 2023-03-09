@@ -55,9 +55,10 @@ Currently using on the main app:
 
 ### Important
 
-When creating a new app or library with Nx, it'll generate a file called `project.json` with some pre-existent configurations. 
+When creating a new app or library with Nx, it'll generate a file called `project.json` with some pre-existent configurations.
 
 Please, add this to `targets`:
+
 ```json
 ...
 "targets" {
@@ -66,5 +67,6 @@ Please, add this to `targets`:
   },
 },
 ```
+
 You can see this example on `libs/components/project.json`.
 This will make sure that every time you push something, it checks if your typescript is correct.

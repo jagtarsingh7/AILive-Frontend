@@ -51,7 +51,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "main-app:build",
-        "hmr": true
+        "hmr": true        
       },
       "configurations": {
         "development": {
