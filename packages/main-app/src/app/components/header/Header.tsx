@@ -7,9 +7,10 @@ import {
 } from '@canvass/components';
 import { HEADER_HEIGHT } from '@canvass/shared/utils';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import { MenuItem } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../../context/UserContext';
 
 function Header() {
   const [token, setToken] = useContext(UserContext);
@@ -47,26 +48,18 @@ function Header() {
                 Model
               </DropdownMenu.Button>
               <DropdownMenu.List>
-                <Link as={RouterLink} to="/uploadmodel">
-                  <Button variant="ghost" colorScheme="blackAlpha">
-                    Upload
-                  </Button>
-                </Link>
-                <Link as={RouterLink} to="/getmodel">
-                  <Button variant="ghost" colorScheme="blackAlpha">
-                    Get
-                  </Button>
-                </Link>
-                <Link as={RouterLink} to="/updatemodel">
-                  <Button variant="ghost" colorScheme="blackAlpha">
-                    Update
-                  </Button>
-                </Link>
-                <Link as={RouterLink} to="/deletemodel">
-                  <Button variant="ghost" colorScheme="blackAlpha">
-                    Delete
-                  </Button>
-                </Link>
+                <MenuItem as={RouterLink} to="/uploadmodel">
+                  Upload
+                </MenuItem>
+                <MenuItem as={RouterLink} to="/getmodel">
+                  Get
+                </MenuItem>
+                <MenuItem as={RouterLink} to="/updatemodel">
+                  Update
+                </MenuItem>
+                <MenuItem as={RouterLink} to="/deletemodel">
+                  Delete
+                </MenuItem>
               </DropdownMenu.List>
             </DropdownMenu>
 

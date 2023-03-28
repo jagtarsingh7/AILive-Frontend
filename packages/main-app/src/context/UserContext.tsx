@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
+import { API } from '../app/api/config';
 
 type UserContextType = [
   string | null,
@@ -24,10 +25,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       };
 
       try {
-        await axios.get(
-          'http://localhost:8000/auth/api/users/me',
-          requestOptions
-        );
+        await axios.get(`${API}/auth/api/users/me`, requestOptions);
       } catch (error) {
         setToken(null);
       }

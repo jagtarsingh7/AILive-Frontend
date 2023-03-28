@@ -1,3 +1,4 @@
+// Import packages
 import React, { useContext, useState } from 'react';
 import {
   Box,
@@ -7,18 +8,22 @@ import {
   Input,
   Flex,
 } from '@chakra-ui/react';
-import './SignUp.css';
-import { UserContext } from '../context/UserContext';
+import './auth.css';
+import { UserContext } from '../../../context/UserContext';
 import axios, { AxiosRequestConfig } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
+import { API } from '../../api/config';
 
+// Type for response body of API call to create new user
 type ResponseBody = {
   access_token: string;
   token_type: string;
 };
 
+// Component for Register
 const Signup: React.FC = () => {
+  // Initializing state variables and retrieving setToken function from UserContext
   const [name, setName] = useState<string>('');
   const [organization, setOrganization] = useState<string>('');
   const [username, setUsername] = useState<string>('');
@@ -27,6 +32,7 @@ const Signup: React.FC = () => {
   const [, setToken] = useContext(UserContext);
   const navigate = useNavigate();
 
+  // Handler functions for updating state variables when input values change
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
@@ -45,6 +51,7 @@ const Signup: React.FC = () => {
     setPassword(event.target.value);
   };
 
+  // Function to make API call to create new user
   const createUser = async (requestOptions: AxiosRequestConfig) => {
     const data = {
       email: username,
@@ -54,22 +61,27 @@ const Signup: React.FC = () => {
     };
 
     try {
+      // API call to create new user
       const response = await axios.post<ResponseBody>(
-        'http://localhost:8000/auth/api/users',
+        `${API}/auth/api/users`,
         data,
         requestOptions
       );
 
+      // Update the user token and navigate to the homepage
       setToken(response.data.access_token);
       navigate('/');
     } catch (error: any) {
+      // Set error message if there was an error creating the user
       setErrorMessage(error.response.data.detail);
     }
   };
 
+  // Handle the submit functionality
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // Request options for API call
     const requestOptions: AxiosRequestConfig = {
       headers: { 'Content-Type': 'application/json' },
     };
@@ -87,7 +99,8 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <Box className="signup-form">
+    <Box className="form">
+      {/* Form for User Register */}
       <form onSubmit={handleSubmit}>
         <FormControl>
           <FormLabel>Name</FormLabel>
@@ -115,6 +128,7 @@ const Signup: React.FC = () => {
         </FormControl>
 
         <Flex justifyContent="center" direction={'column'}>
+          {/* Show errpr if any while registering user */}
           <ErrorMessage message={errorMessage} />
           <Button type="submit" mt={4}>
             Sign Up

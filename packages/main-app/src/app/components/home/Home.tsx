@@ -1,10 +1,10 @@
 import { Container, Text } from '@canvass/components';
-import CardTable from './CardTable';
+import CardTable from '../card/CardTable';
 import './Heading3D.css';
 import { Box } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../../context/UserContext';
 
 function Home() {
   const [hover, setHover] = React.useState(true);
