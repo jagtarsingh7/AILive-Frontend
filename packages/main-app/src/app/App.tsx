@@ -9,6 +9,7 @@ import Signup from './components/auth/Signup';
 import { Testing } from './testing';
 import UploadModel from './components/model_store/UploadModel';
 import DeleteModel from './components/model_store/DeleteModel';
+import UpdateModel from './components/model_store/UpdateModel';
 
 export function App() {
   return (
@@ -22,6 +23,7 @@ export function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/testing" element={<Testing />} />
           <Route path="/uploadmodel" element={<UploadModel />} />
+          <Route path="/updatemodel" element={<UpdateModel />} />
           <Route path="/deletemodel" element={<DeleteModel />} />
         </Routes>
       </UserProvider>

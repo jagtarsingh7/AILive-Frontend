@@ -55,7 +55,7 @@ function DeleteModel() {
 
     try {
       // Make delete request to API
-      await axios.delete(`${API}/model/api/${id}`, requestOptions);
+      await axios.delete(`${API}/api/models/${id}`, requestOptions);
 
       toast({
         title: 'Model Deleted',

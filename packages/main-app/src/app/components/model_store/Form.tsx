@@ -231,7 +231,7 @@ function Form(props: FormProps) {
           <Flex justifyContent="center" direction={'column'}>
             {/* Show error message if there is any */}
             <ErrorMessage message={errorMessage} />
-            <Button type="submit" mt={4}>
+            <Button type="submit" mt={4} isDisabled={Boolean(errorMessage)}>
               Submit
             </Button>
           </Flex>
