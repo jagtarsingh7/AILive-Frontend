@@ -2,45 +2,21 @@ import { Box, VStack } from '@chakra-ui/react';
 import React from 'react';
 import CardItem from './CardItem';
 import './CardTable.css';
+import { Model } from '../model_store/types';
 
-interface Card {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
+interface CardTableProps {
+  model: Model[];
 }
-
-const cards: Card[] = [
-  {
-    id: 1,
-    title: 'Model 1',
-    description: 'This is the first card for Model.',
-    tags: ['Data', 'Data'],
-  },
-  {
-    id: 2,
-    title: 'Model 2',
-    description: 'This is the second card for Model.',
-    tags: ['Data', 'Data'],
-  },
-  {
-    id: 3,
-    title: 'Model 3',
-    description: 'This is the third card for Model.',
-    tags: ['Data', 'Data'],
-  },
-];
-
-const CardTable: React.FC = () => {
+function CardTable(props: CardTableProps) {
   return (
     <Box className="card-container">
       <VStack spacing={4} align="stretch">
-        {cards.map((card) => (
-          <CardItem key={card.id} card={card} />
+        {props.model.map((modelCard) => (
+          <CardItem key={modelCard.id} model={modelCard} />
         ))}
       </VStack>
     </Box>
   );
-};
+}
 
 export default CardTable;

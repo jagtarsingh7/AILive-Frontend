@@ -1,5 +1,7 @@
 export type Model = {
   tags: string;
+  id: number;
+  user_id: number;
   custom_functions: { [key: string]: string };
   pre_model_order: string[];
   post_model_order: string[];

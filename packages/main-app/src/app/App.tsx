@@ -10,6 +10,7 @@ import { Testing } from './testing';
 import UploadModel from './components/model_store/UploadModel';
 import DeleteModel from './components/model_store/DeleteModel';
 import UpdateModel from './components/model_store/UpdateModel';
+import GetModel from './components/model_store/GetModel';
 
 export function App() {
   return (
@@ -25,6 +26,7 @@ export function App() {
           <Route path="/uploadmodel" element={<UploadModel />} />
           <Route path="/updatemodel" element={<UpdateModel />} />
           <Route path="/deletemodel" element={<DeleteModel />} />
+          <Route path="/getmodel" element={<GetModel />} />
         </Routes>
       </UserProvider>
     </VStack>

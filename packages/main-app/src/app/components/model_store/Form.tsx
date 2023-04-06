@@ -13,14 +13,16 @@ import ErrorMessage from '../auth/ErrorMessage';
 import { Model } from './types';
 
 // Define the props for the form
-type FormProps = {
+interface FormProps {
   onSubmit: (formData: Model) => void;
-};
+}
 
 // Define the Form component
 function Form(props: FormProps) {
   const initialFormState = {
     tags: '',
+    id: 0,
+    user_id: 0,
     custom_functions: {},
     pre_model_order: [],
     post_model_order: [],

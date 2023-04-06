@@ -1,0 +1,14 @@
+.box {
+  padding: 10%;
+  margin: 2%;
+  transition: background-color 0.2s ease;
+}
+
+.box:hover {
+  background-color: rgb(191, 209, 226);
+  cursor: pointer;
+}
+
+.tag {
+  border-radius: 16px;
+}

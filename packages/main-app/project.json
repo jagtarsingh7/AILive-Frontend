@@ -4,6 +4,9 @@
   "sourceRoot": "packages/main-app/src",
   "projectType": "application",
   "targets": {
+    "tsCheck": {
+      "executor": "./tools/executors/tsCheck:tsCheck"
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
@@ -51,7 +54,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "main-app:build",
-        "hmr": true        
+        "hmr": true
       },
       "configurations": {
         "development": {
