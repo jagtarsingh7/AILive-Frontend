@@ -20,6 +20,7 @@ function ViewModel(prop: ViewModelProps) {
       <Box className="box">
         <Box mb="2">
           <Text fontWeight="bold">Tags:</Text>
+          <Text ml="2">{prop.model.tags}</Text>
         </Box>
         <Box mb="2">
           <Text fontWeight="bold">ID:</Text>

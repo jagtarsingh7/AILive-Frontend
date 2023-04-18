@@ -11,10 +11,11 @@ import {
 } from '@chakra-ui/react';
 import ErrorMessage from '../auth/ErrorMessage';
 import { Model } from './types';
+import { FileDropZone } from '@canvass/components';
 
 // Define the props for the form
 interface FormProps {
-  onSubmit: (formData: Model) => void;
+  onSubmit: (formData: Model, file: File | null) => void;
 }
 
 // Define the Form component
@@ -55,6 +56,7 @@ function Form(props: FormProps) {
   const [outputNamesInput, setOutputNamesInput] = useState<string>(
     '{"additionalProp1": "string"}'
   );
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   // Handle the change for fields
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +103,14 @@ function Form(props: FormProps) {
     event.preventDefault();
 
     try {
-      await props.onSubmit(formData);
+      // // Create a new formData object to append the uploaded file
+      // const fileData = new FormData();
+      // fileData.append('file', uploadedFile || '');
+
+      // // Create a new modelData object to append the rest of the form data
+      // const modelData = { ...formData };
+
+      await props.onSubmit(formData, uploadedFile);
       setFormData(initialFormState);
       setCustomFunctionsInput('{}');
       setPreModel('');
@@ -117,10 +126,28 @@ function Form(props: FormProps) {
     }
   };
 
+  const solutionNavigatorDropZoneLabels = {
+    clickToUploadText: 'Click to upload',
+    dragDropText: 'or drag and drop',
+    uploadTypesText: '.PKL or .CSV files only',
+  };
+
+  // Define the onDrop event handler
+  const handleDrop = (files: File[]) => {
+    if (files.length > 0) {
+      setUploadedFile(files[0]);
+    }
+  };
+
   // Render the Form component
   return (
     <Box className="form" maxW="2xl" mx="auto" mt="8" width="100%">
       <form className="model-form" onSubmit={handleSubmit}>
+        <FileDropZone
+          onDrop={handleDrop}
+          labels={solutionNavigatorDropZoneLabels}
+        />
+
         <FormControl>
           <FormLabel>Tags</FormLabel>
           <Input

@@ -26,6 +26,7 @@ const FileDropZone = (props: FileDropZoneProps) => {
     disabled: isDisabled,
     accept: {
       'text/csv': ['.csv'],
+      'text/pkl': ['.pkl'],
     },
   });
 

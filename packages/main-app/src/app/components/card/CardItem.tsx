@@ -19,10 +19,17 @@ function CardItem(prop: modelsData) {
         <Stack spacing={2}>
           <Text className="card-title">Model ID: {prop.model.id}</Text>
           <Text className="card-description">
-            User ID: {prop.model.user_id}
+            Predict Function: {prop.model.predict_function}
           </Text>
           <Text className="card-description">
-            Model Version{prop.model.model_version}
+            Storage Options:{' '}
+            {Object.entries(prop.model.container_options).map(
+              ([key, value]) => (
+                <span key={key}>
+                  {key}: {value}{' '}
+                </span>
+              )
+            )}
           </Text>
           <HStack>
             {Object.keys(prop.model.container_options).map((tag) => (

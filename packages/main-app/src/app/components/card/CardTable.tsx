@@ -10,7 +10,7 @@ interface CardTableProps {
 function CardTable(props: CardTableProps) {
   return (
     <Box className="card-container">
-      <VStack spacing={4} align="stretch">
+      <VStack spacing={8} align="stretch">
         {props.model.map((modelCard) => (
           <CardItem key={modelCard.id} model={modelCard} />
         ))}

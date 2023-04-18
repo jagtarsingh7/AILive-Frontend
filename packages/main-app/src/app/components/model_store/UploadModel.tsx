@@ -32,22 +32,44 @@ function UploadModel() {
   }
 
   // Handle the upload form submission
-  const handleUpload = async (modelData: Model) => {
+  const handleUpload = async (modelData: Model, file: File | null) => {
     // Set the request options with the token header
     const requestOptions: AxiosRequestConfig = {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     };
 
+    const url = `${API}/api/models?tags=${
+      modelData.tags
+    }&custom_functions=${JSON.stringify(
+      modelData.custom_functions
+    )}&predict_function=${
+      modelData.predict_function
+    }&storage_options=${JSON.stringify(
+      modelData.storage_options
+    )}&container_options=${JSON.stringify(
+      modelData.container_options
+    )}&model_metadata=${JSON.stringify(
+      modelData.model_metadata
+    )}&model_version=${
+      modelData.model_version
+    }&input_features_and_types=${JSON.stringify(
+      modelData.input_features_and_types
+    )}&output_names_and_types=${JSON.stringify(
+      modelData.output_names_and_types
+    )}`;
+
+    const body = {
+      file: file,
+      pre_model_order: modelData.pre_model_order,
+      post_model_order: modelData.post_model_order,
+    };
+
     try {
       // Make the API call to create a new model
-      const response = await axios.post(
-        `${API}/api/models`,
-        modelData,
-        requestOptions
-      );
+      const response = await axios.post(url, body, requestOptions);
       // Message Toast with the newly created model ID
       toast({
         title: 'Model Created',
@@ -76,7 +98,11 @@ function UploadModel() {
   return (
     <Container maxW="2xl" centerContent>
       <Heading>Upload New Model</Heading>
-      <Form onSubmit={handleUpload} />
+      <Form
+        onSubmit={(modelData: Model, file: File | null) =>
+          handleUpload(modelData, file)
+        }
+      />
       {/* Show error message if there is any */}
       <ErrorMessage message={errorMessage} pb={5} />
     </Container>
